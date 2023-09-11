@@ -1,0 +1,81 @@
+
+{% extends 'base.html' %}
+{% block title %}
+  Home 
+{% endblock title %}
+{% block body %}
+  <!-- <div class="container my-5">
+    <form action="/" method="post">
+      <div class="mb-3">
+        <h3>Student Form</h3>
+      </div>
+      <div class="mb-3">
+        <label for="first_name" class="form-label">First Name</label>
+        <input type="text" class="form-control" name="first_name" id="first_name">
+      </div>
+      <div class="mb-3">
+        <label for="last_name" class="form-label">Last Name</label>
+        <input type="text" class="form-control" name="last_name" id="last_nam1e">
+      </div>
+      <div class="mb-3">
+        <label for="father_name" class="form-label">Father Name</label>
+        <input type="text" class="form-control" name="father_name" id="father_name1">
+      </div>
+      <div class="mb-3">
+        <label for="mobile" class="form-label">Mobile No.</label>
+        <input type="text" class="form-control" name="mobile" id="mobile1">
+      </div>
+      <div class="mb-3">
+        <label for="stu_class" class="form-label">Class</label>
+        <input type="text" class="form-control" name="stu_class" id="stu_clas1s">
+      </div>
+      <button type="submit" class="btn btn-dark">Submit</button>
+    </form>
+  </div> -->
+  <div class="container my-3">
+    <div class="mb-3">
+      <h3>Student Informaction</h3>
+      <!-- <h5>Add Student</a></h5> -->
+      <a href="/add_student"><button type="button" class="btn btn-light">Add Student</button></a>
+    </div>
+    {% if allStudent|length == 0 %}
+
+    <div class="alert alert-secondary" role="alert">
+      No Record Found !
+    </div> {% else %} 
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">SNo</th>
+          <th scope="col">First Nmae</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Father Name</th>
+          <th scope="col">Mobile Number</th>
+          <th scope="col">Class</th>
+          <th scope="col">Date</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for student in allStudent %}
+        <tr>
+          <th>{{loop.index}}</th>
+          <td>{{student.first_name}}</td>
+          <td>{{student.last_name}}</td>
+          <td>{{student.father_name}}</td>
+          <td>{{student.mobile}}</td>
+          <td>{{student.stu_class}}</td>
+          <td>{{student.date_create}}</td>
+          <td>
+            <a href="/delete/{{student.id}}"><button type="button" onclick="return confirm('Are you sure you want to delete this item?');"
+                class="btn btn-outline-dark btn-sm mx-2">Delete</button></a>
+            <a href="/update/{{student.id}}"><button type="button"
+                class="btn btn-outline-dark btn-sm mx-2">Update</button></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+  </div>
+  {% endblock body %}
